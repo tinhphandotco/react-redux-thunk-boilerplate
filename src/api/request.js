@@ -7,11 +7,10 @@ const axiosInstance = axios.create({
 
 const request = (options = {}) => {
   if (options.headers) {
-    axiosInstance.defaults.headers = Object.assign(
-      {},
-      axiosInstance.defaults.headers,
-      options.headers
-    );
+    axiosInstance.defaults.headers = {
+      ...axiosInstance.defaults.headers,
+      ...options.headers,
+    };
   }
 
   return axiosInstance;

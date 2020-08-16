@@ -1,15 +1,11 @@
 import request from 'api/request';
-import { authHeader } from 'api/config'; 
+import { authHeader } from 'api/config';
 
-const login = (body) => {
-  return request().post('/login', body);
-}
+const login = (body) => request().post('/login', body);
 
-const getProfile = () => {
-  return request({ headers: authHeader() }).get('/profile');
-}
+const getProfile = () => request({ headers: authHeader() }).get('/profile');
 
 export default {
   login,
-  getProfile
-}
+  getProfile,
+};

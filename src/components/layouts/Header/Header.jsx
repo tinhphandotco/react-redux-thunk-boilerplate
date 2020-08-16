@@ -5,5 +5,5 @@ export default function Header() {
     <div className="Header">
       <h1>Header</h1>
     </div>
-  )
+  );
 }

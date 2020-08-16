@@ -1,14 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Header from './Header';
 import Footer from './Footer';
 
 export default function MasterLayout(props) {
   return (
-    <React.Fragment>
+    <>
       <Header />
-      { props.children || '' }
+      {props.children}
       <Footer />
-    </React.Fragment>
-  )
+    </>
+  );
 }
+
+MasterLayout.propTypes = {
+  children: PropTypes.node,
+};
+
+MasterLayout.defaultProps = {
+  children: '',
+};

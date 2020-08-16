@@ -8,5 +8,5 @@ export default function HomePage() {
     <Layout>
       <App />
     </Layout>
-  )
+  );
 }
