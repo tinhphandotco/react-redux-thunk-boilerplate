@@ -1,14 +1,17 @@
 import { createStore, applyMiddleware, compose } from "redux";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+
 import thunk from "redux-thunk";
 
 import API from "api";
-import store from "./stores";
+import rootReducer from "./reducers";
 
 const middleware = [
   thunk.withExtraArgument({
     API: API,
-  })
-]
+  }),
+];
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -22,7 +25,18 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 );
 
-export default createStore(
+const persistConfig = {
+  key: 'create-react-app',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const store = createStore(persistedReducer, enhancer);
+
+const persistor = persistStore(store);
+
+export {
   store,
-  enhancer
-);
+  persistor,
+};
