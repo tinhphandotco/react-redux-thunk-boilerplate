@@ -1,16 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+
 import Root from './Root';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+
+import store from './redux/configStore';
 
 import './styles/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename={''}>
-      <Root />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter basename={''}>
+        <Root />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
